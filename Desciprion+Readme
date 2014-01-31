@@ -1,0 +1,54 @@
+A) NAME : LAKSHMANAN PALANIAPPAN 
+
+
+B) STUDENT ID : 5511763991
+
+C) In the project i have created a directory server file which will initially accept request from the three file servers about their TCP port information . This information is written into a file called directory.txt by the file server . Then the directoryserver receives requests from the clients asking for certain files . 
+The directory server uses topology.txt and resource.txt files to detrmine the nearest file servers having the requested documents/files by the clients and returns the fileserver names and their port numbers to the clients . Using this information the client sets up a TCP connection with the respective file server and sends a request for the documents to the file servers which in turn replies to the client by seding the appropriate documents.
+
+
+D)
+
+The code files present in the submitted project are :
+1)directory_server.c - Receives the requests from file servers and creates a directory.txt file if not present else overwrites the file if present and stores the file server TCP port numbers which the client will use to contact in phase3.For each client requests it detrmines the nearest file server each client should contact in order to get their corressponding documents .
+
+2) file_server1.c - Will inform directory_server.c about its TCP port number and handles client requests if any in phase 3
+
+3) file_server2.c - Will inform directory_server.c about its TCP port number and handles client requests if any in phase 3
+
+4) file_server3.c - Will inform directory_server.c about its TCP port number and handles client requests if any in phase 3
+
+5) client1.c - sends a request for doc1 to directory server and gets to know the nearest file server having doc1 . It establishes TCP connection with that particular file server to obtain doc1 in phase3.
+
+6) client2.c - sends a request for doc2 to directory server and gets to know the nearest file server having doc2 . It establishes TCP connection with that particular file server to obtain doc2 in phase3.
+
+
+
+E)
+The files should be run in the following order .directory_server.c --->> file_server1.c--->> file_server2.c---> file_server3.c---> client1.c---> client2.c
+The directory server gets the request from both client1 and client2 simultaneously and serves them one after the other but still both the client codes are independant . Hence only after all the clients have sent their requests the directory server starts to process each request and sends reply to all of the clients .
+So client1 and client2 have to be run in order to get the response from directory serever to both . 
+
+
+
+F) FORMAT OF MESSAGES EXCHANGED :
+file_server1 ---> directory_server : File_Server1 51991
+file_server2 ---> directory_server : File_Server2 42991
+file_server3 ---> directory_server : File_Server3 53991
+client1--->directory_server : Client1 doc1
+client2--->directory_server : Client2 doc2
+directory_server---> client1 : client1 FileServername portnumber
+directoryserver-->client2 : client2 Fileservername portnumber
+
+
+
+
+G)  THE TCP PORT NUMBERS FOR FILESERVER1 AND FILE SERVER3 HAS BEEN CHANGES TO 51991 AND 53991 AFTER BIND ERROR WAS RECURRENT IN THE O/P OF THE PROGRAM . 
+
+In the project the server(directory server ) has to get the input requests from all of the clients in order to start processing and replying back to the clients . The clients are not serviced one after the other . They are serviced simultaneoulsy . In this case the project might fail if they need to be serviced one after the other .
+
+
+
+
+H) Mainly referred beejs guide to do the code and previously acquired knowldge in socket programming in UnderGraduate .
+
